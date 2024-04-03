@@ -11,11 +11,21 @@ services:
   server:
     build:
       context: .
+      dockerfile: ./server/Dockerfile
+    volumes:
+      - ./server:.
     environment:
       NODE_ENV: production
-
     ports:
       - 3000:8081
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    volumes:
+      - ./client:.
+    ports:
+      - 3000:8082
   soketi:
     image: quay.io/soketi/soketi:1.4-16-debian
     ports:
